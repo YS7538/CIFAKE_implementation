@@ -1,0 +1,22 @@
+# Virtual environment and Python cache
+.venv/
+__pycache__/
+*.py[cod]
+
+# Local data, trained models, and experiment output
+data/
+results/
+checkpoints/
+*.pt
+*.pth
+*.ckpt
+
+# Secrets and local editor settings
+.env
+.vscode/
+.idea/
+
+# Notebook and operating-system files
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db
