@@ -11,7 +11,7 @@ checkpoints/
 *.pth
 *.ckpt
 
-# Secrets and local editor settings
+# local editor settings
 .env
 .vscode/
 .idea/

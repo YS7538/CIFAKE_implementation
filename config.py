@@ -1,1 +1,19 @@
+# config.py
 
+BATCH_SIZE = 64
+
+EPOCHS = 5
+
+LEARNING_RATE = 1e-3
+
+TRAIN_SPLIT = 0.9
+
+NUM_WORKERS = 4
+
+SEED = 42
+
+IMAGE_SIZE = 32
+
+NUM_CLASSES = 2
+
+CHECKPOINT_DIR = "checkpoints"
