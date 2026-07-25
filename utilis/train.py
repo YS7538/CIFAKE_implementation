@@ -1,3 +1,5 @@
+import time
+
 import torch
 
 
@@ -10,6 +12,7 @@ def train_model(
     device,
     epochs,
     checkpoint_path,
+    progress_interval=50,
 ):
 
     print(f"Training on: {next(model.parameters()).device}")
@@ -27,13 +30,20 @@ def train_model(
         # =========================
 
         model.train()
+        epoch_start = time.perf_counter()
+        total_train_batches = len(train_loader)
+        print(
+            f"Epoch [{epoch + 1}/{epochs}] started "
+            f"({total_train_batches:,} training batches)",
+            flush=True,
+        )
 
         running_loss = 0.0
 
-        for images, labels in train_loader:
+        for batch_index, (images, labels) in enumerate(train_loader, start=1):
 
-            images = images.to(device)
-            labels = labels.to(device)
+            images = images.to(device, non_blocking=True)
+            labels = labels.to(device, non_blocking=True)
 
             outputs = model(images)
             loss = criterion(outputs, labels)
@@ -43,6 +53,22 @@ def train_model(
             optimizer.step()
 
             running_loss += loss.item()
+
+            if batch_index == 1 or batch_index % progress_interval == 0:
+                # Synchronize before timing so CUDA's asynchronous work is
+                # included in the elapsed time and ETA.
+                if device.type == "cuda":
+                    torch.cuda.synchronize(device)
+                elapsed = time.perf_counter() - epoch_start
+                batches_per_second = batch_index / elapsed
+                remaining_seconds = (total_train_batches - batch_index) / batches_per_second
+                print(
+                    f"  Train batch {batch_index:,}/{total_train_batches:,} "
+                    f"| loss: {loss.item():.4f} "
+                    f"| {batches_per_second:.1f} batches/s "
+                    f"| ETA: {remaining_seconds / 60:.1f} min",
+                    flush=True,
+                )
 
         avg_train_loss = running_loss / len(train_loader)
         train_loss_history.append(avg_train_loss)
@@ -61,8 +87,8 @@ def train_model(
 
             for images, labels in val_loader:
 
-                images = images.to(device)
-                labels = labels.to(device)
+                images = images.to(device, non_blocking=True)
+                labels = labels.to(device, non_blocking=True)
 
                 outputs = model(images)
                 loss = criterion(outputs, labels)

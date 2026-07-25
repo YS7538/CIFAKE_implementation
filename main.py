@@ -13,6 +13,7 @@ from config import (
 )
 
 from models.cnn_improved import ImprovedCNN
+from models.cnn_paper import PaperCNN
 
 from utilis.dataset import get_dataloaders
 from utilis.train import train_model
@@ -42,7 +43,7 @@ def main():
     print(f"Classes: {class_names}")
 
     # Model
-    model = ImprovedCNN().to(device)
+    model = PaperCNN().to(device)
 
     # Loss Function
     criterion = nn.CrossEntropyLoss()
@@ -62,7 +63,7 @@ def main():
         optimizer=optimizer,
         device=device,
         epochs=EPOCHS,
-        checkpoint_path=f"{CHECKPOINT_DIR}/improved_cnn.pth",
+        checkpoint_path=f"{CHECKPOINT_DIR}/paper_cnn.pth",
     )
 
     # Evaluate
