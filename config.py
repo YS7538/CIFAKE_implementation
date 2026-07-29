@@ -1,10 +1,10 @@
 # config.py
 
-BATCH_SIZE = 64
+BATCH_SIZE = 32
 
 EPOCHS = 5
 
-LEARNING_RATE = 1e-3
+LEARNING_RATE = 1e-4
 
 TRAIN_SPLIT = 0.9
 

@@ -42,3 +42,37 @@ Notes:
 - Increased second convolution filters (64).
 - Increased FC layer to 128 neurons.
 - Consistently outperformed Paper CNN.
+
+## ResNet18
+
+Architecture:
+- Pretrained ResNet18 (ImageNet)
+- Final fully connected layer replaced for binary classification (2 classes)
+- Fine-tuned all layers
+
+Hyperparameters:
+- Epochs: 5
+- Batch Size: 64
+- Learning Rate: 1e-3
+- Optimizer: Adam
+- Input Size: 224 × 224
+
+Results:
+- Accuracy: 96.68%
+- Precision: 95.63%
+- Recall: 97.83%
+- F1 Score: 96.72%
+
+Confusion Matrix:
+[[9553, 447],
+ [217, 9783]]
+
+Notes:
+- Achieved the best performance among all CNN-based models tested.
+- Improved accuracy by 3.55% over the reproduced Paper CNN baseline.
+- Improved F1 score by 2.75% over the Paper CNN and 2.75% over the Improved CNN.
+- High recall indicates the model successfully identified most images belonging to the positive class.
+- Transfer learning with ImageNet-pretrained weights significantly improved performance compared to training CNNs from scratch.
+
+## ViT
+

@@ -14,6 +14,8 @@ from config import (
 
 from models.cnn_improved import ImprovedCNN
 from models.cnn_paper import PaperCNN
+from models.ResNet import ResNet18Model
+from models.vit import ViTModel
 
 from utilis.dataset import get_dataloaders
 from utilis.train import train_model
@@ -29,6 +31,7 @@ def main():
 
     # Image transforms
     transform = transforms.Compose([
+        transforms.Resize((224,224)),
         transforms.ToTensor(),
     ])
 
@@ -43,7 +46,7 @@ def main():
     print(f"Classes: {class_names}")
 
     # Model
-    model = PaperCNN().to(device)
+    model = ViTModel().to(device)
 
     # Loss Function
     criterion = nn.CrossEntropyLoss()
@@ -63,7 +66,7 @@ def main():
         optimizer=optimizer,
         device=device,
         epochs=EPOCHS,
-        checkpoint_path=f"{CHECKPOINT_DIR}/paper_cnn.pth",
+        checkpoint_path=f"{CHECKPOINT_DIR}/Vit.pth",
     )
 
     # Evaluate
