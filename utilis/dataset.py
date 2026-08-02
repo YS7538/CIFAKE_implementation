@@ -7,10 +7,13 @@ from torch.utils.data import DataLoader, random_split
 import os
 from pathlib import Path
 
+import os
+from pathlib import Path
+
 if os.path.exists("/kaggle/input/datasets/yatinsharma75/image-set"):
     ROOT = Path("/kaggle/input/datasets/yatinsharma75/image-set")
 else:
-    ROOT = Path(__file__).resolve().parent.parent
+    ROOT = Path(__file__).resolve().parent.parent / "data" / "CIFAKE"
 
 
 def get_dataloaders(
@@ -22,7 +25,7 @@ def get_dataloaders(
 
 
     full_train_dataset = ImageFolder(
-        ROOT / "data" / "CIFAKE" / "train",
+        ROOT / "train",
         transform=transform
     )
 
@@ -37,7 +40,7 @@ def get_dataloaders(
     )
 
     test_dataset = ImageFolder(
-        ROOT / "data" / "CIFAKE" / "test",
+        ROOT / "test",
         transform=transform
     )
 
