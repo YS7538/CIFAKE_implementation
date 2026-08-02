@@ -10,7 +10,7 @@ TRAIN_SPLIT = 0.9
 
 # Keep the conservative Windows-compatible default.  Once the training loop
 # works locally, try 2 or 4 workers to speed up image decoding.
-NUM_WORKERS = 0
+NUM_WORKERS = 4
 
 SEED = 42
 
