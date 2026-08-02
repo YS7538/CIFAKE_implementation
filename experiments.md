@@ -74,5 +74,30 @@ Notes:
 - High recall indicates the model successfully identified most images belonging to the positive class.
 - Transfer learning with ImageNet-pretrained weights significantly improved performance compared to training CNNs from scratch.
 
-## ViT
+## Vision Transformer (ViT-B/16)
+
+Architecture:
+- Pretrained ViT-B/16 (ImageNet)
+- Classification head replaced for binary classification
+
+Hyperparameters:
+- Epochs: 1
+- Batch Size: 64
+- Learning Rate: 1e-4
+- Optimizer: Adam
+
+Results:
+- Accuracy: 97.15%
+- Precision: 96.87%
+- Recall: 97.45%
+- F1 Score: 97.16%
+
+Confusion Matrix:
+[[9685, 315],
+ [255, 9745]]
+
+Notes:
+- Highest performing model among all evaluated architectures.
+- Fine-tuned pretrained ImageNet weights.
+- Achieved state-of-the-art performance within this benchmark despite training for only one epoch.
 

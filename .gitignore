@@ -20,3 +20,6 @@ checkpoints/
 .ipynb_checkpoints/
 .DS_Store
 Thumbs.db
+
+# Local resume reference
+resume_notes.md
