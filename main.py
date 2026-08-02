@@ -66,7 +66,7 @@ def main():
         optimizer=optimizer,
         device=device,
         epochs=EPOCHS,
-        checkpoint_path=f"{CHECKPOINT_DIR}/Vit.pth",
+        checkpoint_path="/kaggle/working/vit_b16.pth",
     )
 
     # Evaluate
