@@ -2,7 +2,7 @@
 
 BATCH_SIZE = 64
 
-EPOCHS = 5
+EPOCHS = 1
 
 LEARNING_RATE = 1e-4
 
