@@ -4,7 +4,13 @@ from torchvision.datasets import ImageFolder
 from torch.utils.data import DataLoader, random_split
 
 
-ROOT = Path(__file__).resolve().parent.parent
+import os
+from pathlib import Path
+
+if os.path.exists("/kaggle/input/datasets/yatinsharma75/image-set"):
+    ROOT = Path("/kaggle/input/datasets/yatinsharma75/image-set")
+else:
+    ROOT = Path(__file__).resolve().parent.parent
 
 
 def get_dataloaders(
